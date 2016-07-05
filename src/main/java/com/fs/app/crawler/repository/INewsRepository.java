@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fs.app.crawler.pojo.NewsPojo;
 
-@Transactional
 public interface INewsRepository {
 	
 	public abstract boolean saveNews(NewsPojo paramNewsPojo);

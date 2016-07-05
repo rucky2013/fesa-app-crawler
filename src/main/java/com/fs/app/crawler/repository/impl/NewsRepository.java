@@ -2,15 +2,19 @@ package com.fs.app.crawler.repository.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.fs.app.crawler.pojo.NewsPojo;
 import com.fs.app.crawler.repository.INewsRepository;
 
 @Repository
+@Transactional
 public class NewsRepository implements INewsRepository{
 	@Autowired
 	private SessionFactory sessionFactory;
