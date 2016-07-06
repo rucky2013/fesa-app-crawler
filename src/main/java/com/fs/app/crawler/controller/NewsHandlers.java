@@ -22,6 +22,7 @@ public class NewsHandlers extends BaseHandlers{
 	@RequestMapping(value = "/pushNewsBywilddog", method = RequestMethod.POST)
 	public void pushNewsBywilddog(HttpServletRequest request,
 			HttpServletResponse response) {
+		System.out.println("======pushNewsBywilddog========");
 		Map<String, String[]> params = request.getParameterMap();
 		newsService.pushNewsBywilddog(params);
 		WriteJson(response,"成功");
@@ -31,6 +32,7 @@ public class NewsHandlers extends BaseHandlers{
 	@RequestMapping(value = "/pushNewsByNative", method = RequestMethod.POST)
 	public void pushNewsByNative(HttpServletRequest request,
 			HttpServletResponse response) {
+		System.out.println("======pushNewsByNative========");
 		Map<String, String[]> params = request.getParameterMap();
 		newsService.pushNewsByNative(params);
 		WriteJson(response,"成功");

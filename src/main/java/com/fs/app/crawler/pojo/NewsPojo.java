@@ -19,7 +19,7 @@ public class NewsPojo {
 	private String url;
 	
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO) 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id",nullable=false)
 	public Integer getId() {
 		return id;
@@ -68,5 +68,17 @@ public class NewsPojo {
 	}
 	public void setSource(String source) {
 		this.source = source;
+	}
+	@Override
+	public String toString() {
+		StringBuilder sb=new StringBuilder();
+		sb.append("id:"+(id==null?"":id));
+		sb.append("image:"+this.image);
+		sb.append("source:"+this.source);
+		sb.append("url:"+this.url);
+		sb.append("time:"+this.time);
+		sb.append("title:"+this.title);
+		sb.append("timestamp:"+this.timestamp.toString());
+		return sb.toString();
 	}
 }

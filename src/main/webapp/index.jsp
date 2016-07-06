@@ -1,6 +1,6 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>FeSa爬虫</title>
 </head>
 <body>

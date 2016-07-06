@@ -22,16 +22,18 @@ public class NewsService implements INewsService {
 		try {
 			String[] obj = pdata.get("data");
 			String[] obj_url = pdata.get("url");
+			System.out.println("开始判断参数");
 			if (obj != null && obj.length > 0) {
 				NewsPojo pojo = JSONObject.parseObject(obj[0], NewsPojo.class);
-				String stime = pojo.getTime().replace("　来源:", "");
+				String stime = pojo.getTime().replace("来源:", "").trim();
 				pojo.setTime(stime);
 				pojo.setTimestamp(sdf.parse(stime).getTime());
 				pojo.setUrl(obj_url[0]);
-				Wilddog ref = new Wilddog(
-						"https://201605111151fei.wilddogio.com");
+				System.out.println("开始调用野狗API");
+				Wilddog ref = new Wilddog("https://201605111151fei.wilddogio.com");
 				ref.child("news").push().setValue(pojo);
 				Thread.sleep(100);
+				System.out.println("调用野狗API结束");
 			} else
 				return "";
 		} catch (Exception ex) {
@@ -48,10 +50,11 @@ public class NewsService implements INewsService {
 			String[] obj_url = pdata.get("url");
 			if (obj != null && obj.length > 0) {
 				NewsPojo pojo = JSONObject.parseObject(obj[0], NewsPojo.class);
-				String stime = pojo.getTime().replace("　来源:", "");
+				String stime = pojo.getTime().replace("来源:", "").trim();
 				pojo.setTime(stime);
 				pojo.setTimestamp(sdf.parse(stime).getTime());
 				pojo.setUrl(obj_url[0]);
+				System.out.println("实体信息:"+pojo.toString());
 				newsRepository.saveNews(pojo);
 			} else
 				return "";

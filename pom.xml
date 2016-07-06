@@ -49,7 +49,7 @@
 		<dependency>
 			<groupId>com.wilddog</groupId>
 			<artifactId>wilddog-client-jvm</artifactId>
-			<version>0.6.3</version>
+			<version>0.6.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
