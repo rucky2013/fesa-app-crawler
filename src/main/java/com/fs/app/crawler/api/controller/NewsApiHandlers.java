@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fs.app.crawler.pojo.NewsPojo;
-import com.fs.app.crawler.service.INewsService;
+import com.fs.commons.app.pojo.NewsPojo;
+import com.fs.commons.crawler.service.INewsService;
 
 @Controller
 @RequestMapping("/api/news")

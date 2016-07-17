@@ -167,6 +167,11 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernateversion}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.fs</groupId>
+			<artifactId>fesa-commons-app</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>fesa-app-crawler</finalName>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fs.app.crawler.api.controller.BaseHandlers;
-import com.fs.app.crawler.service.INewsService;
+import com.fs.commons.crawler.service.INewsService;
 
 @Controller
 @RequestMapping("/news")

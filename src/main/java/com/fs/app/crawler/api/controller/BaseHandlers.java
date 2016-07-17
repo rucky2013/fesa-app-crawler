@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
-import com.fs.app.crawler.entity.RenderData;
+import com.fs.commons.app.entity.RenderData;
 
 public abstract class BaseHandlers {
 

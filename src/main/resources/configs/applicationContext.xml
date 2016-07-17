@@ -44,7 +44,7 @@
     	<property name="dataSource" ref="dataSource"/>  
     	<property name="packagesToScan">
             <list>
-                <value>com.fs.app.crawler.pojo</value>
+                <value>com.fs.commons.app.pojo</value>
             </list>
         </property>
 	   	<property name="hibernateProperties">  
