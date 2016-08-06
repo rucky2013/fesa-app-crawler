@@ -1,5 +1,6 @@
 package com.fs.app.crawler.controller;
 
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.fs.app.crawler.api.controller.BaseHandlers;
+
+import com.fs.commons.app.pojo.NewsPojo;
 import com.fs.commons.crawler.service.INewsService;
 
 @Controller
@@ -36,5 +38,24 @@ public class NewsHandlers extends BaseHandlers{
 		Map<String, String[]> params = request.getParameterMap();
 		newsService.pushNewsByNative(params);
 		WriteJson(response,"成功");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getNewsDataForPage", method = RequestMethod.GET)
+	public void getNewsDataForPage(HttpServletRequest request,
+			HttpServletResponse response) {
+		Long timestamp = Long.valueOf(request.getParameter("ptimestamp"));
+		String type = request.getParameter("ptype");
+		List<NewsPojo> result = newsService.getNewsForPage(timestamp, type);
+		WriteJson(response,result);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/getNewsById", method = RequestMethod.GET)
+	public void getNewsById(HttpServletRequest request,
+			HttpServletResponse response) {
+		int pid = Integer.valueOf(request.getParameter("pid"));
+		NewsPojo result = newsService.getNewsById(pid);
+		WriteJson(response, result);
 	}
 }

@@ -1,4 +1,4 @@
-package com.fs.app.crawler.api.controller;
+package com.fs.app.crawler.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
