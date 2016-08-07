@@ -44,9 +44,10 @@ public class NewsHandlers extends BaseHandlers{
 	@RequestMapping(value = "/getNewsDataForPage", method = RequestMethod.GET)
 	public void getNewsDataForPage(HttpServletRequest request,
 			HttpServletResponse response) {
-		Long timestamp = Long.valueOf(request.getParameter("ptimestamp"));
+		int pid=Integer.valueOf(request.getParameter("pid"));
+		long timestamp = Long.valueOf(request.getParameter("ptimestamp"));
 		String type = request.getParameter("ptype");
-		List<NewsPojo> result = newsService.getNewsForPage(timestamp, type);
+		List<NewsPojo> result = newsService.getNewsForPage(pid,timestamp, type);
 		WriteJson(response,result);
 	}
 

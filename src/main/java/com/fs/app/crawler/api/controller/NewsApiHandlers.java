@@ -28,6 +28,7 @@ public class NewsApiHandlers extends BaseHandlers{
 	public void getNewsDataForPage(HttpServletRequest request,
 			HttpServletResponse response) {
 		Map<String, String[]> params = request.getParameterMap();
+		int pid=0;
 		Long timestamp = (long) 0;
 		String type = "";
 		String callback = "";
@@ -37,10 +38,12 @@ public class NewsApiHandlers extends BaseHandlers{
 				timestamp = Long.valueOf(val[0]);
 			else if (ele.equals("ptype"))
 				type = String.valueOf(val[0]);
+			else if(ele.equals("pid"))
+				pid=Integer.valueOf(val[0]);
 			else if (ele.equals("callback"))
 				callback = String.valueOf(val[0]);
 		}
-		List<NewsPojo> result = newsService.getNewsForPage(timestamp, type);
+		List<NewsPojo> result = newsService.getNewsForPage(pid,timestamp, type);
 		WriteJsonWithCallBack(response,callback,result);
 	}
 

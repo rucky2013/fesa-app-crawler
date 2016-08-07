@@ -1,6 +1,8 @@
 package com.fs.app.crawler.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,12 @@ public class NewsService implements INewsService {
 	@Override
 	public String pushNewsByNative(Map<String, String[]> pdata) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date_flag=new Date();
+		Calendar cale_flag = Calendar.getInstance();
 		try {
+			cale_flag.setTime(date_flag);
+			cale_flag.set(Calendar.DATE, cale_flag.get(Calendar.DATE) - 7);
+			date_flag = sdf.parse(sdf.format(cale_flag.getTime()));
 			String[] obj = pdata.get("data");
 			String[] obj_url = pdata.get("url");
 			if (obj != null && obj.length > 0) {
@@ -54,8 +61,9 @@ public class NewsService implements INewsService {
 				pojo.setTime(stime);
 				pojo.setTimestamp(sdf.parse(stime).getTime());
 				pojo.setUrl(obj_url[0]);
-				System.out.println("实体信息:"+pojo.toString());
-				newsRepository.saveNews(pojo);
+				if(pojo.getTimestamp()>date_flag.getTime()){
+					newsRepository.saveNews(pojo);
+				}
 			} else
 				return "";
 		} catch (Exception ex) {
@@ -65,8 +73,8 @@ public class NewsService implements INewsService {
 	}
 
 	@Override
-	public List<NewsPojo> getNewsForPage(Long timestamp, String type) {
-		List<NewsPojo> list_news = newsRepository.getNewsForPage(timestamp, type);
+	public List<NewsPojo> getNewsForPage(int pid,Long timstamp, String type) {
+		List<NewsPojo> list_news = newsRepository.getNewsForPage(pid,timstamp,type);
 		return list_news;
 	}
 

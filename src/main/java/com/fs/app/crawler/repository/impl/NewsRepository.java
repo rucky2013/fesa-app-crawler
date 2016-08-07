@@ -1,6 +1,5 @@
 package com.fs.app.crawler.repository.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -29,22 +28,23 @@ public class NewsRepository implements INewsRepository{
 		return false;
 	}
 
-	public List<NewsPojo> getNewsForPage(Long timestamp, String type) {
+	public List<NewsPojo> getNewsForPage(int pid,Long timstamp, String type) {
 		String sql = "";
-		if (timestamp.longValue() == 0L) {
-			sql = "from NewsPojo order by timestamp desc";
-		} else if (type.equals("loadmore")) {
-			sql = "from NewsPojo where timestamp<" + timestamp
-					+ " order by timestamp desc";
-		} else if (type.equals("loadnew")) {
-			sql = "from NewsPojo where timestamp>" + timestamp
-					+ " order by timestamp desc";
-		}
-		if (sql == "") {
-			return new ArrayList();
+		if (pid>0&&timstamp>0) {
+			if(type.equals("loadmore")){
+				sql = "from NewsPojo where timestamp<="+timstamp+" and id !="+pid+" order by timestamp desc";
+			}else if(type.equals("loadnew")){
+				sql = "from NewsPojo where timestamp>="+timstamp+" and id !="+pid+" order by timestamp desc";
+			}else{
+				sql = "from NewsPojo order by timestamp desc";
+			}
+		}else{
+			sql="from NewsPojo order by timestamp desc";
 		}
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery(sql).setMaxResults(10);
+		Query query = session.createQuery(sql);
+		query.setFirstResult(0);
+		query.setMaxResults(10);
 		return query.list();
 	}
 
