@@ -63,4 +63,27 @@ public class NewsRepository implements INewsRepository{
 		}
 		return null;
 	}
+
+	@Override
+	public List<NewsPojo> getNewsForCategory(String category) {
+		String cate=category;
+		String sql="";
+		if(cate==null||cate.equals("")){
+			sql="from NewsPojo where category=''";
+		}else{
+			sql="from NewsPojo where category='"+cate+"'";
+		}
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery(sql);
+		List<NewsPojo> result = query.list();
+		return result;
+	}
+
+	@Override
+	public boolean updateNewsCategory(NewsPojo pojo, String category) {
+		Session session = this.sessionFactory.getCurrentSession();
+		pojo.setCategory(category);
+		session.update(pojo);
+		return true;
+	}
 }

@@ -83,4 +83,16 @@ public class NewsService implements INewsService {
 		NewsPojo pojo = newsRepository.getNewsById(id);
 		return pojo;
 	}
+
+	@Override
+	public List<NewsPojo> getNewsForCategory(String category) {
+		List<NewsPojo> news=newsRepository.getNewsForCategory(category);
+		return news;
+	}
+
+	@Override
+	public Boolean updateNewsCategory(NewsPojo pojo, String category) {
+		Boolean result= newsRepository.updateNewsCategory(pojo,category);
+		return result;
+	}
 }

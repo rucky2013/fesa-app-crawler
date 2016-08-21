@@ -8,6 +8,12 @@
         <dependent-module archiveName="fesa-commons-app-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fesa-commons-app/fesa-commons-app">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="fesa-platform-commons-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fesa-platform-commons/fesa-platform-commons">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="fesa-platform-runtime-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/fesa-platform-runtime/fesa-platform-runtime">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="fesa-app-crawler"/>
         <property name="java-output-path" value="/fesa-app-crawler/target/classes"/>
     </wb-module>
